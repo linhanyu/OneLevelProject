@@ -10,8 +10,21 @@ import java.util.*;
  */
 
 
-public class ObjTuple implements Serializable{
+public class ObjTuple implements Iterable,Serializable{
     protected List<Object> atomData;
+    public ObjTuple(){
+        atomData = new ArrayList<>();
+
+    }
+    public ObjTuple(UserData usr){
+        this();
+//        atomData = new ArrayList<>();
+        for (Object o : usr){
+            atomData.add(o);
+        }
+    }
+
+
 
     public List<Object> getAtomData() {
         return atomData;
@@ -21,6 +34,28 @@ public class ObjTuple implements Serializable{
         this.atomData = atomData;
     }
 
+    public void addAtomData(Object oj) {
+       atomData.add(oj);
+    }
+    class iter implements Iterator{
+        Iterator<Object> it;
+        public iter(){
+            it = atomData.iterator();
+        }
+
+        @Override
+        public boolean hasNext() {
+            return it.hasNext();
+        }
+
+        public Object next(){
+            return it.next();
+        }
+    }
+    @Override
+    public Iterator iterator() {
+        return new iter();
+    }
 }
 
 

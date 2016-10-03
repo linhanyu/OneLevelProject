@@ -6,16 +6,14 @@ import java.util.ArrayList;
  * Created by Henry on 16/9/24.
  */
 public class CreaterObjTuple extends ObjTuple{
-    public CreaterObjTuple(){
-        atomData = new ArrayList<Object>();
+    private int CreaterID;
 
-    }
 
-    public void addUser(int type,String name){
+
+    public void addUser(int type,String name,UserData Creater){
         UserData userData = new UserData();
-        userData.type = type;
-        userData.name = name;
         atomData.add(userData);
+//        CreaterID = (Integer) Creater.getData("Id");
     }
 
 

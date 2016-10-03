@@ -1,9 +1,9 @@
 package Servlet;
 
-import JavaBean.CreaterObjTuple;
-import JavaBean.ObjTuple;
-import com.sun.tools.internal.jxc.SchemaGenerator;
+import JavaBean.*;
 
+
+import java.net.Socket;
 import java.util.Map;
 
 /**
@@ -16,11 +16,14 @@ public class TupleHandler {
         this.objTuple = objTuple;
     }
 
-    public Runner procedure(){
+    public Runner procedure(Data datas, Socket socket){
         if (CreaterObjTuple.class.isInstance(objTuple)){
-            return new CreaterRunner(objTuple);
+            return new CreaterRunner(objTuple,datas,socket);
+        }else if (SearchObjTuple.class.isInstance(objTuple)){
+            return new SearchRunner(objTuple,datas,socket);
+        } else if (UpdateObjTuple.class.isInstance(objTuple)){
+            return new UpdateRunner(objTuple,datas,socket);
         }
-
         return null;
     }
 }
